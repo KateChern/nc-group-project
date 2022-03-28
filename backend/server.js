@@ -12,7 +12,7 @@ const connectDB = require("./config/db");
 // const port = Math.floor(Math.random() * 10000);
 const authJwt = require("./middleware/jwt");
 
-app.use(cors());
+app.use(cors({ credentials: true }));
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
