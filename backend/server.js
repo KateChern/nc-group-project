@@ -14,6 +14,9 @@ const authJwt = require("./middleware/jwt");
 
 app.use(cors());
 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 connectDB();
 
 app.use(express.json());
@@ -26,8 +29,8 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use("/api/users", require("./routes/userRoutes"));
-// app.use("/api/users", [authJwt.verifyToken], require("./routes/userRoutes"));
+// app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/users", [authJwt.verifyToken], require("./routes/userRoutes"));
 app.use("/api/auth", require("./routes/authRoutes"));
 
 app.use("/api/visits", require("./routes/visitsRoutes"));
