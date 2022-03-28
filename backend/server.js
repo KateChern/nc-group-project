@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 const port = process.env.PORT || 9000;
 const app = express();
 const colors = require("colors");
+const cookieSession = require("cookie-session");
 const {
   errorHandler,
   handleCustomErrors,
@@ -19,9 +20,15 @@ app.use(
     credentials: true,
   })
 );
-
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
+app.use(
+  cookieSession({
+    name: "nc-session",
+    secret: "COOKIE_SECRET", // should use as secret environment variable
+    httpOnly: true,
+  })
+);
+// const cookieParser = require("cookie-parser");
+// app.use(cookieParser());
 
 connectDB();
 
