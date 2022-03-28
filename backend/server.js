@@ -20,15 +20,15 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  cookieSession({
-    name: "nc-session",
-    secret: "COOKIE_SECRET", // should use as secret environment variable
-    httpOnly: true,
-  })
-);
-// const cookieParser = require("cookie-parser");
-// app.use(cookieParser());
+// app.use(
+//   cookieSession({
+//     name: "nc-session",
+//     secret: "COOKIE_SECRET", // should use as secret environment variable
+//     httpOnly: true,
+//   })
+// );
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 connectDB();
 
