@@ -37,9 +37,15 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, Content-Type, Accept,  x-access-token"
+    "Access-Control-Allow-Origin",
+    "https://auth-group.herokuapp.com/"
   );
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept,  x-access-token"
+  );
+
   next();
 });
 // app.use("/api/users", require("./routes/userRoutes"));
